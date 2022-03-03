@@ -9,6 +9,7 @@ from email import header
 from tqdm import tqdm
 
 from src.utils.common import create_directories, read_yaml, unzip_file
+from src.utils.data_mgmt import validate_image
 
 STAGE = "get data stage"  # <<< change stage name
 
@@ -27,7 +28,7 @@ def main(config_path):
     local_dir = config["data"]["local_dir"]
     create_directories([local_dir])
 
-    
+
     data_file = config["data"]["data_file"]
     data_file_path = os.path.join(local_dir, data_file)
 
@@ -42,6 +43,9 @@ def main(config_path):
     unzip_data_dir = config["data"]["unzip_data_dir"]
     create_directories([unzip_data_dir])
     unzip_file(source=data_file_path, dest=unzip_data_dir)
+
+    #validate data
+    validate_image(config)
 
 
 if __name__ == "__main__":
