@@ -1,4 +1,5 @@
 # MLflow-project-template
+
 MLflow project template
 
 ## STEPS -
@@ -16,19 +17,43 @@ conda create --prefix ./env python=3.7 -y
 ```bash
 conda activate ./env
 ```
+
 OR
+
 ```bash
 source activate ./env
 ```
 
 ### STEP 04- install the requirements
+
 ```bash
 pip install -r requirements.txt
 ```
 
 ### STEP 05 - Create conda.yaml file -
+
 ```bash
 conda env export > conda.yaml
 ```
 
 ### STEP 06- commit and push the changes to the remote repository
+
+### MLFLow commands
+
+#### commands to run mlflow project
+
+```bash
+mlflow run . --no-conda
+```
+
+#### run any specific entry point MLproject file
+
+```bash
+mlflow run . -e get_data --no-conda 
+```
+
+#### run any specific entry point MLproject file with patameter
+
+```bash
+mlflow run . -e get_data -P config=configs/your_config.yaml --no-conda 
+```
