@@ -2,6 +2,7 @@ import argparse
 import logging
 import os
 
+import mlflow
 import tensorflow as tf
 
 from src.utils.common import read_yaml
@@ -64,6 +65,10 @@ def main(config_path):
 
     classifier.save(trained_model_file)
     logging.info(f"trained model saved at:  {trained_model_file}")
+
+    with mlflow.start_run() as runs:
+        mlflow.log_params(params)
+        mlflow.keras.log_model(classifier, "model")
 
 
 if __name__ == '__main__':
