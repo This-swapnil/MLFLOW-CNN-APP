@@ -3,22 +3,21 @@ import os
 
 import mlflow
 
-from src.utils.common import create_directories, read_yaml
-
 STAGE = "MAIN"  ## <<< change stage name
 
 logging.basicConfig(
-    filename=os.path.join("logs", 'running_logs.log'),
-    level=logging.INFO,
-    format="[%(asctime)s: %(levelname)s: %(module)s]: %(message)s",
-    filemode="a")
+        filename = os.path.join("logs", 'running_logs.log'),
+        level = logging.INFO,
+        format = "[%(asctime)s: %(levelname)s: %(module)s]: %(message)s",
+        filemode = "a")
 
 
 def main():
     with mlflow.start_run() as run:
-        mlflow.run(".", "get_data", use_conda=False)
+        mlflow.run(".", "get_data", use_conda = False)
         # mlflow.run(".", "get_data",parameters={}, use_conda=False)
-        mlflow.run(".", "base_model_creation", use_conda=False)
+        mlflow.run(".", "base_model_creation", use_conda = False)
+        mlflow.run(".", "training", use_conda = False)
 
 
 if __name__ == '__main__':
